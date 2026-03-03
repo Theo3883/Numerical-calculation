@@ -20,7 +20,7 @@ def rezolva_sistem_rar(fisier_d0, fisier_d1, fisier_d2, fisier_b, p_precizie):
     k_max = 10000
     
     # ---------------------------------------------------------
-    # 1. Citire date si calcul dimensiune sistem (10 pct)
+    # Citire date si calcul dimensiune sistem 
     # ---------------------------------------------------------
     d0 = citeste_vector_din_fisier(fisier_d0)
     d1 = citeste_vector_din_fisier(fisier_d1)
@@ -35,14 +35,14 @@ def rezolva_sistem_rar(fisier_d0, fisier_d1, fisier_d2, fisier_b, p_precizie):
     print(f"1. Dimensiunea sistemului (n): {n}")
 
     # ---------------------------------------------------------
-    # 2. Găsire număr diagonale p și q (10 pct - continuare)
+    # Găsire număr diagonale p și q (10 pct - continuare)
     # ---------------------------------------------------------
     p = n - len(d1)
     q = n - len(d2)
     print(f"2. Ordinele diagonalelor secundare sunt p = {p} și q = {q}")
 
     # ---------------------------------------------------------
-    # 3. Verificare elemente d0 nenule (5 pct)
+    # Verificare elemente d0 nenule
     # ---------------------------------------------------------
     for i in range(n):
         if abs(d0[i]) <= epsilon:
@@ -51,10 +51,10 @@ def rezolva_sistem_rar(fisier_d0, fisier_d1, fisier_d2, fisier_b, p_precizie):
     print("3. Verificare cu succes: toate elementele diagonalei principale sunt nenule.")
 
     # ---------------------------------------------------------
-    # 4. Algoritmul Gauss-Seidel (35 pct)
+    # Algoritmul Gauss-Seidel
     # ---------------------------------------------------------
-    x_c = [0.0] * n # vectorul cu solutia la pasul curent
-    x_p = [0.0] * n # vectorul cu solutia la pasul precedent
+    x_c = [0.4 * 0.998] * n # vectorul cu solutia la pasul curent
+    x_p = [0.4 * 0.998] * n # vectorul cu solutia la pasul precedent
     
     k = 0
     print("4. Se ruleaza algoritmul Gauss-Seidel...")
@@ -109,7 +109,7 @@ def rezolva_sistem_rar(fisier_d0, fisier_d1, fisier_d2, fisier_b, p_precizie):
         print(f"      Ultima eroare (delta_x) a fost: {delta_x}")
         return
     # ---------------------------------------------------------
-    # 5 & 6. Calcul ||A*x_GS - b|| (20 pct)
+    # Calcul ||A*x_GS - b||
     # ---------------------------------------------------------
     norma_infinit = 0.0
     
@@ -134,15 +134,13 @@ def rezolva_sistem_rar(fisier_d0, fisier_d1, fisier_d2, fisier_b, p_precizie):
     print(f"5. Norma ||A*x_GS - b||_inf: {norma_infinit}")
     print(f"   (Norma este < epsilon? {'Da' if norma_infinit < epsilon else 'Nu'})")
 
-# --------------------------------------------
-# Rulam codul 
-# --------------------------------------------
+
 if __name__ == "__main__":
-    # Parametrul 'p' din cerinta epsilon = 10^-p (de exemplu, 6 pentru epsilon = 1e-6)
+    # Parametrul 'p' din cerinta epsilon = 10^-p (de exemplu, 6 pentru epstein = 1e-6)
     p_precizie = 6
 
     baza = Path(__file__).parent / "variables"
-    index_set = 5
+    index_set = 2
 
     fisier_d0 = baza / f"d0_{index_set}.txt"
     fisier_d1 = baza / f"d1_{index_set}.txt"
