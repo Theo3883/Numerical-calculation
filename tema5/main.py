@@ -47,7 +47,7 @@ def jacobi_valori_vectori_proprii(a_init, eps=1e-10, k_max=10_000):
 					p_local, q_local = i, j
 		return p_local, q_local
 
-	def calculeaza_c_s_t(m, p_local, q_local):
+	def calculeaza_cos_sin_tan(m, p_local, q_local):
 		a_pp = m[p_local, p_local]
 		a_qq = m[q_local, q_local]
 		a_pq = m[p_local, q_local]
@@ -65,7 +65,7 @@ def jacobi_valori_vectori_proprii(a_init, eps=1e-10, k_max=10_000):
 	# k = 0; U = I_n; calculam initial p, q, respectiv c, s, t
 	k = 0
 	p, q = calculeaza_indici_pq(a)
-	c, s, _ = calculeaza_c_s_t(a, p, q)
+	c, s, _ = calculeaza_cos_sin_tan(a, p, q)
 
 	# while (A != matrice diagonala si k <= k_max)
 	while (not este_diagonala(a, eps=eps)) and (k <= k_max):
@@ -89,7 +89,7 @@ def jacobi_valori_vectori_proprii(a_init, eps=1e-10, k_max=10_000):
 
 		# Recalculam p, q, apoi c, s, t pentru urmatorul pas
 		p, q = calculeaza_indici_pq(a)
-		c, s, _ = calculeaza_c_s_t(a, p, q)
+		c, s, _ = calculeaza_cos_sin_tan(a, p, q)
 
 		k += 1
 
@@ -123,7 +123,7 @@ def sir_matrici_cholesky(a_init, eps=1e-10, k_max=1_000):
 			# Cholesky exista doar pentru matrice simetrice pozitiv definite
 			return a_k, k - 1, False, "Matricea nu este pozitiv definita (Cholesky nu poate fi aplicat)."
 
-		# Construim urmatorul termen din sir conform enuntului
+		# Construim urmatorul termen din sir
 		a_next = l_k.T @ l_k
 		diferenta = np.linalg.norm(a_next - a_k)
 		a_k = a_next
