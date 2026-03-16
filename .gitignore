@@ -62,3 +62,5 @@ htmlcov/
 
 # macOS
 .DS_Store
+
+*.txt
