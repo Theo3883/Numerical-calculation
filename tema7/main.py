@@ -4,19 +4,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
-
-# ---------------------------------------------------------------------------
-# Tema 7:
-# 1) Determinarea intervalului [-R, R] care contine toate radacinile reale:
-#      R = (|a0| + A) / |a0|, A = max{|ai|, i=1..n}, a0 != 0.
-# 2) Aproximarea radacinilor reale cu metoda Newton.
-# 3) Aproximarea radacinilor reale cu metoda Olver.
-# 4) Calculul valorilor P(x), P'(x), P''(x) prin schema Horner.
-# 5) Pornind din puncte initiale diferite x0, se cauta cat mai multe
-#    radacini reale distincte si se compara numarul de pasi Newton vs Olver.
-# ---------------------------------------------------------------------------
-
-
 @dataclass
 class MethodResult:
 	# Rezultatul unei rulari Newton/Olver pornind dintr-un x0.

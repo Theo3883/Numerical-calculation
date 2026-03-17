@@ -1,17 +1,6 @@
 import numpy as np
 
 
-# ---------------------------------------------------------------------------
-# Tema 5:
-# 1) Pentru p=n, aproximarea valorilor/vetorilor proprii ai unei matrice
-#    simetrice A folosind metoda Jacobi.
-# 2) Verificarea relatiei A_init * U ≈ U * Lambda.
-# 3) Construirea sirului A^(k) prin factorizari Cholesky:
-#      A^(k) = L^(k)(L^(k))^T, A^(k+1) = (L^(k))^T L^(k).
-# 4) Pentru p>n, calcul SVD + rang + conditionare + pseudo-inverse.
-# ---------------------------------------------------------------------------
-
-
 def este_simetrica(a, eps=1e-12):
 	# Verificare A = A^T in toleranta numerica eps
 	return np.allclose(a, a.T, atol=eps)

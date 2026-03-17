@@ -2,14 +2,6 @@ import numpy as np
 import scipy.linalg
 
 
-# ---------------------------------------------------------------------------
-# Tema 3:
-# Descompunerea QR a unei matrice patratice A folosind algoritmul Householder.
-# Se rezolva sistemul Ax=b cu doua metode (Householder propriu + biblioteca),
-# se calculeaza erorile si inversa matricei A prin descompunerea QR.
-# ---------------------------------------------------------------------------
-
-
 def solve_tema3(n=300, eps=1e-10):
 
     # ==========================================
