@@ -2,30 +2,30 @@ import numpy as np
 import scipy.linalg
 
 
-# ---------------------------------------------------------------------------
-# Tema 3:
-# Descompunerea QR a unei matrice patratice A folosind algoritmul Householder.
-# Se rezolva sistemul Ax=b cu doua metode (Householder propriu + biblioteca),
-# se calculeaza erorile si inversa matricei A prin descompunerea QR.
-# ---------------------------------------------------------------------------
-
-
-def solve_tema3(n=10, eps=1e-10):
-
-    print(f"Running for n={n}, eps={eps}")
+def solve_tema3(n=300, eps=1e-10):
 
     # ==========================================
     # 1. GENERAREA DATELOR
     # ==========================================
-
-    # Matrice A patratica n x n cu valori aleatoare in [0, 1)
-    A_init = np.random.rand(n, n)
+     # Matrice A patratica n x n cu valori aleatoare in [0, 1)
+    # A_init = np.random.rand(n, n)
 
     # Vectorul s in R^n, ales aleator; acesta este solutia exacta a sistemului
-    s = np.random.rand(n)
+    # s = np.random.rand(n)
+
+    # A = [[0,0,4],[1,2,3],[0,1,2]], s = [3,2,1]
+    A_init = np.array([
+        [0.0, 0.0, 4.0],
+        [1.0, 2.0, 3.0],
+        [0.0, 1.0, 2.0],
+    ])
+    s = np.array([3.0, 2.0, 1.0])
+    n = A_init.shape[0]
+
+    print(f"Running for n={n}, eps={eps} (initializare exemplu)")
 
     # Calculam b_i = sum_{j=1}^{n} s_j * a_ij, adica b = A * s
-    # Se itereaza explicit dupa formula din teorie (nu se foloseste @)
+    # Se itereaza explicit dupa formula din teorie
     b_init = np.zeros(n)
     for i in range(n):
         for j in range(n):
@@ -196,7 +196,7 @@ def solve_tema3(n=10, eps=1e-10):
     A_inv_householder = np.zeros((n, n))
     if not singular:
         for j in range(n):
-            # b_col = coloana j a lui Q^T
+            # b_col = coloana j a lui Q^T (e_j transformata de Q^T) = Qt[:, j]
             # Deoarece Qt = Q^T, Qt[:, j] reprezinta exact coloana j a lui Q^T
             b_col = Qt[:, j].copy()
             # Rezolvam R * x_col = b_col prin substitutie inversa
@@ -218,6 +218,32 @@ def solve_tema3(n=10, eps=1e-10):
     # ==========================================
     # 6. AFISAREA REZULTATELOR
     # ==========================================
+
+    Q_householder = Qt.T
+    np.set_printoptions(precision=6, suppress=True)
+
+    print("\n----- DATE DE INTRARE -----")
+    print("A_init =\n", A_init)
+    print("s      =\n", s)
+    print("b_init =\n", b_init)
+
+    print("\n----- QR HOUSEHOLDER (IMPLEMENTARE PROPRIE) -----")
+    print("Q_householder =\n", Q_householder)
+    print("R_householder =\n", R)
+    print("Q_householder @ R_householder =\n", Q_householder @ R)
+
+    print("\n----- QR BIBLIOTECA (SCIPY) -----")
+    print("Q_lib =\n", Q_lib)
+    print("R_lib =\n", R_lib)
+    print("Q_lib @ R_lib =\n", Q_lib @ R_lib)
+
+    print("\n----- SOLUTII SISTEM -----")
+    print("x_householder =\n", x_householder)
+    print("x_qr          =\n", x_qr)
+
+    print("\n----- INVERSE -----")
+    print("A_inv_householder =\n", A_inv_householder)
+    print("A_inv_bibl        =\n", A_inv_lib)
 
     print(f"\n||x_QR - x_Householder||_2                       = {diff_solutions:.2e}")
     print(f"\n||A_init * x_Householder - b_init||_2            = {err_householder:.2e}")
@@ -243,5 +269,5 @@ def solve_tema3(n=10, eps=1e-10):
         print("  -> REZULTAT CORECT: Toate erorile sunt mai mici decat 10^-6!")
 
 
-# Apelam cu n aleator si eps standard
-solve_tema3(n=15, eps=1e-10)
+# Apelam cu datele fixe din exemplu
+solve_tema3(eps=1e-10)
