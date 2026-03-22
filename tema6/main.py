@@ -80,7 +80,7 @@ def clamped_c2_spline_second_derivatives(x_nodes, y_nodes, d_a, d_b):
 
 
 def spline_eval(x_nodes, y_nodes, a_second, x_value):
-	"""Evalueaza spline-ul in punctul x_value pe intervalul potrivit."""
+	#Evalueaza spline-ul in punctul x_value pe intervalul potrivit."""
 	# Gasim intervalul [x_i, x_{i+1}] care contine punctul cerut.
 	i = np.searchsorted(x_nodes, x_value) - 1
 	i = int(np.clip(i, 0, len(x_nodes) - 2))
@@ -170,6 +170,7 @@ def run_example(example_index, example_data, n=10, m=5, output_dir=None):
 	# ==========================================
 	# 6. GRAFIC f, P_m, S_f (BAREM)
 	# ==========================================
+	
 	x_dense = np.linspace(a, b, 500)
 	y_true = func(x_dense)
 	y_poly = np.array([horner_eval(poly_coeffs, value) for value in x_dense])

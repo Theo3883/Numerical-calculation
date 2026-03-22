@@ -1,3 +1,8 @@
+# Tudor Alexandru, 310910401RSL231222, alextudor6717@gmail.com, alextudor.pufi
+# Sandu Theodor, 310910401RSL231196, teosandu88@gmail.com, theo8338
+# Procentaj Aproximat AI: 50% (Edge cases, rezolvare cu biblioteca, verificare solutie etc)
+# Alte surse folosite: Pagina cursului pentru materialele indrumatoare si rezolvare, linkuri catre bibliotecile folosite, sugerate si-n tema..
+
 import numpy as np
 import scipy.linalg
 
